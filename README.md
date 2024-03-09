@@ -6,7 +6,8 @@ The Airbnb Clone Project is a command-line interface (CLI) application designed 
 Command Interpreter Overview
 
 The command interpreter is the heart of the Airbnb Clone Project, providing a user-friendly interface for managing Airbnb data. It is designed to be intuitive and powerful, allowing users to perform a wide range of operations without needing to interact with a graphical user interface.
-How to Start It
+
+## How to Start It
 
 To start the command interpreter, navigate to the root directory of the project in your terminal and run the following command:
 
@@ -19,27 +20,27 @@ How to Use It
 
 The command interpreter supports a variety of commands for managing listings, bookings, and user profiles. Here are some examples:
 
-    Create a new user: create user <name> <email> <password>
-    List all listings: list places
-    Create a new listing: create place <name> <description> <price> <location>
-    Book a listing: book <place_id> <start_date> <end_date>
+1. Create a new user: create user <name> <email> <password>
+2. List all listings: list places
+3. Create a new listing: create place <name> <description> <price> <location>
+4. Book a listing: book <place_id> <start_date> <end_date>
 
-Examples
+## Examples
 
 Here are some examples of how to use the command interpreter
 
-Creating a New User:
+### Creating a New User:
 
     create user John Doe john.doe@example.com password123
 
-Listing All Listings:
+### Listing All Listings:
 
     list places
 
-Creating a New Listing:
+### Creating a New Listing:
 
     create place "Beach House" "A beautiful house by the beach." 100 "New York, NY"
 
-Booking a Listing:
+### Booking a Listing:
 
     book 1 2024-04-10 2024-04-17
