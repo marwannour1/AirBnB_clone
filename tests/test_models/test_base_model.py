@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ This file contains the tests for the BaseModel class."""
 
 import unittest
