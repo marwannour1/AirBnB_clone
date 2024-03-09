@@ -22,7 +22,7 @@ The command interpreter supports a variety of commands for managing listings, bo
 
 Examples
 
-Here are some examples of how to use the command interpreter:
+Here are some examples of how to use the command interpreter
 
     Creating a New User:
 
