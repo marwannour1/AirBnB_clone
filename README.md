@@ -1,6 +1,6 @@
 # AirBnb Clone
 
-##Project Description
+## Project Description
 
 The Airbnb Clone Project is a command-line interface (CLI) application designed to mimic the core functionalities of Airbnb. It allows users to manage listings, bookings, and user profiles through a terminal interface. This project is built with Python, utilizing the cmd module for the command interpreter and leveraging various Python libraries for data management and user interaction.
 Command Interpreter Overview
@@ -10,7 +10,9 @@ How to Start It
 
 To start the command interpreter, navigate to the root directory of the project in your terminal and run the following command:
 
+```python
 python console.py
+```
 
 This command initializes the command interpreter, and you will be presented with a prompt where you can enter commands.
 How to Use It
