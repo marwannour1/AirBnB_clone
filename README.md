@@ -26,7 +26,7 @@ Here are some examples of how to use the command interpreter
 
     Creating a New User:
 
-create user John Doe john.doe@example.com password123
+`create user John Doe john.doe@example.com password123`
 
     Listing All Listings:
 
