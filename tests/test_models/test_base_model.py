@@ -30,19 +30,22 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """ Test for the __str__ method """
         self.assertEqual(str(self.base_model),
-                         "[BaseModel] ({}) {}".format(self.base_model.id,
-                                                      self.base_model.__dict__))
+                         "[BaseModel] ({}) {}"
+                         .format(self.base_model.id, self.base_model.__dict__))
 
     def test_save(self):
         """ Test for the save method """
         self.base_model.save()
-        self.assertNotEqual(self.base_model.created_at, self.base_model.updated_at)
+        self.assertNotEqual(self.base_model.created_at,
+                            self.base_model.updated_at)
 
     def test_to_dict(self):
         """ Test for the to_dict method """
         base_model_dict = self.base_model.to_dict()
         self.assertIsInstance(base_model_dict, dict)
         self.assertEqual(base_model_dict["__class__"], "BaseModel")
-        self.assertEqual(base_model_dict["created_at"], self.base_model.created_at.isoformat())
-        self.assertEqual(base_model_dict["updated_at"], self.base_model.updated_at.isoformat())
+        self.assertEqual(base_model_dict["created_at"],
+                         self.base_model.created_at.isoformat())
+        self.assertEqual(base_model_dict["updated_at"],
+                         self.base_model.updated_at.isoformat())
         self.assertEqual(base_model_dict["id"], self.base_model.id)
