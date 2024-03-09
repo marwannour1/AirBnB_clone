@@ -50,3 +50,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(base_model_dict["updated_at"],
                          self.base_model.updated_at.isoformat())
         self.assertEqual(base_model_dict["id"], self.base_model.id)
+
+    def test_kwargs(self):
+        """ Test for the creation of an instance with **kwargs """
+        base_model_dict = self.base_model.to_dict()
+        base_model_copy = BaseModel(**base_model_dict)
+        self.assertEqual(self.base_model.to_dict(), base_model_copy.to_dict())
