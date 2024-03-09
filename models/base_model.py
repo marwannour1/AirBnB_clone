@@ -11,6 +11,8 @@ from models import storage
 class BaseModel:
     """ Base Model Class """
 
+    storage = storage
+
     def __init__(self, *args, **kwargs):
         """ Constructor for BaseModel class """
 

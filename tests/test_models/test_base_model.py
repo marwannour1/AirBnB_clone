@@ -56,3 +56,15 @@ class TestBaseModel(unittest.TestCase):
         base_model_dict = self.base_model.to_dict()
         base_model_copy = BaseModel(**base_model_dict)
         self.assertEqual(self.base_model.to_dict(), base_model_copy.to_dict())
+
+    def test_instance_storage(self):
+        """ Test for the existence of the storage attribute """
+        self.assertTrue(hasattr(self.base_model, "storage"))
+
+    def test_instance_storage_all(self):
+        """ Test for the existence of the storage.all method """
+        self.assertTrue(hasattr(self.base_model.storage, "all"))
+
+    def test_instance_storage_new(self):
+        """ Test for the existence of the storage.new method """
+        self.assertTrue(hasattr(self.base_model.storage, "new"))
