@@ -38,3 +38,5 @@ class FileStorage:
                 print(json.loads)
         except FileNotFoundError:
             pass
+        except json.JSONDecodeError:
+            pass
