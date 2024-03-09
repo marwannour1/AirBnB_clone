@@ -28,14 +28,14 @@ Creating a New User:
 
     create user John Doe john.doe@example.com password123
 
-    Listing All Listings:
+Listing All Listings:
 
-list places
+    list places
 
-    Creating a New Listing:
+Creating a New Listing:
 
-create place "Beach House" "A beautiful house by the beach." 100 "New York, NY"
+    create place "Beach House" "A beautiful house by the beach." 100 "New York, NY"
 
-    Booking a Listing:
+Booking a Listing:
 
-book 1 2024-04-10 2024-04-17
+    book 1 2024-04-10 2024-04-17
