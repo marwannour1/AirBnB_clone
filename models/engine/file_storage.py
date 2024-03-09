@@ -3,7 +3,6 @@
 
 import json
 
-
 class FileStorage:
     """ This class serializes instances to a JSON file and deserializes JSON"""
 
