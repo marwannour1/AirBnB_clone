@@ -2,6 +2,8 @@
 """ This module contains the storage class for the file storage engine. """
 
 import json
+from models.base_model import BaseModel
+from models.user import User
 
 class FileStorage:
     """ This class serializes instances to a JSON file and deserializes JSON"""
@@ -23,18 +25,19 @@ class FileStorage:
         with open(self.__file_path, "w") as file:
             my_dict = {}
             for key, value in self.__objects.items():
-                if isinstance(value, dict):
-                    my_dict[key] = value
-                else:
-                    my_dict[key] = value.to_dict()
+                my_dict[key] = value.to_dict()
             json.dump(my_dict, file)
 
     def reload(self):
         """ Deserializes the JSON file to __objects """
         try:
             with open(self.__file_path, "r") as file:
-                self.__objects = {key: value for key, value in
-                                  json.load(file).items()}
+                my_dict = json.load(file)
+                for key, value in my_dict.items():
+                    if value["__class__"] == "BaseModel":
+                        self.__objects[key] = BaseModel(**value)
+                    elif value["__class__"] == "User":
+                        self.__objects[key] = User(**value)
         except FileNotFoundError:
             pass
         except json.JSONDecodeError:
