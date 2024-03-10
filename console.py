@@ -128,6 +128,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 print(value)
         else:
+
             args = arg.split()
             if args[0] in ("BaseModel", "User", "Place", "City", "State",
                            "Amenity", "Review"):
@@ -160,6 +161,7 @@ class HBNBCommand(cmd.Cmd):
                             print("** value missing **")
                         else:
                             setattr(storage.all()[key], args[2], args[3])
+
                             storage.save()
                     else:
                         print("** no instance found **")
@@ -167,6 +169,37 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
+    def default(self, arg):
+        """ Default method for the console """
+        args = arg.split(".")
+        if len(args) > 1:
+            if args[1] == "all()":
+                self.do_all(args[0])
+            elif args[1] == "count()":
+                count = 0
+                for key in storage.all().keys():
+                    if args[0] in key:
+                        count += 1
+                print(count)
+            elif args[1][0:5] == "show(":
+                new_arg = args[1][5:-1]
+                new_arg = args[0] + " " + new_arg.replace(",", " ").replace("\"", " ")
+                self.do_show(new_arg)
+            elif args[1][0:8] == "destroy(":
+                new_arg = args[1][8:-1]
+                new_arg = args[0] + " " + new_arg.replace(",", " ").replace("\"", " ")
+                self.do_destroy(new_arg)
+                return
+            elif args[1][0:7] == "update(":
+                new_arg = args[1][7:-1]
+                new_arg = args[0] + " " + new_arg.replace(",", " ").replace("\"", " ")
+                self.do_update(new_arg)
+            else:
+                print("*** Unknown syntax: {}".format(arg))
+                return False
+        else:
+            print("*** Unknown syntax: {}".format(arg))
+            return False
 
 if __name__ == '__main__':
 
