@@ -27,7 +27,6 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
 
-
     def __str__(self):
         """ String representation of BaseModel class """
 

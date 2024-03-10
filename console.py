@@ -5,6 +5,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 
 
@@ -32,16 +37,46 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
         else:
+
+            new_instance = None
             if arg == "BaseModel":
                 new_instance = BaseModel()
                 new_instance.save()
                 print(new_instance.id)
+
             elif arg == "User":
                 new_instance = User()
                 new_instance.save()
                 print(new_instance.id)
+
+            elif arg == "Place":
+                new_instance = Place()
+                new_instance.save()
+                print(new_instance.id)
+
+            elif arg == "City":
+                new_instance = City()
+                new_instance.save()
+                print(new_instance.id)
+
+            elif arg == "State":
+                new_instance = State()
+                new_instance.save()
+                print(new_instance.id)
+
+            elif arg == "Amenity":
+                new_instance = Amenity()
+                new_instance.save()
+                print(new_instance.id)
+
+            elif arg == "Review":
+                new_instance = Review()
+                new_instance.save()
+                print(new_instance.id)
+
             else:
                 print("** class doesn't exist **")
+
 
     def do_show(self, arg):
         """ Prints the string representation of an instance based
@@ -50,7 +85,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = arg.split()
-            if args[0] == "BaseModel":
+            if args[0] in ("BaseModel", "User", "Place", "City", "State",
+                           "Amenity", "Review"):
                 if len(args) < 2:
                     print("** instance id missing **")
                 else:
@@ -59,15 +95,7 @@ class HBNBCommand(cmd.Cmd):
                         print(storage.all()[key])
                     else:
                         print("** no instance found **")
-            elif args[0] == "User":
-                if len(args) < 2:
-                    print("** instance id missing **")
-                else:
-                    key = args[0] + "." + args[1]
-                    if key in storage.all():
-                        print(storage.all()[key])
-                    else:
-                        print("** no instance found **")
+
             else:
                 print("** class doesn't exist **")
 
@@ -78,7 +106,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = arg.split()
-            if args[0] == "BaseModel":
+            if args[0] in ("BaseModel", "User", "Place", "City", "State",
+                           "Amenity", "Review"):
                 if len(args) < 2:
                     print("** instance id missing **")
                 else:
@@ -88,16 +117,7 @@ class HBNBCommand(cmd.Cmd):
                         storage.save()
                     else:
                         print("** no instance found **")
-            elif args[0] == "User":
-                if len(args) < 2:
-                    print("** instance id missing **")
-                else:
-                    key = args[0] + "." + args[1]
-                    if key in storage.all():
-                        del storage.all()[key]
-                        storage.save()
-                    else:
-                        print("** no instance found **")
+
             else:
                 print("** class doesn't exist **")
 
@@ -109,12 +129,12 @@ class HBNBCommand(cmd.Cmd):
                 print(value)
         else:
             args = arg.split()
-            if args[0] == "BaseModel":
+            if args[0] in ("BaseModel", "User", "Place", "City", "State",
+                           "Amenity", "Review"):
                 for key, value in storage.all().items():
-                    print(value)
-            elif args[0] == "User":
-                for key, value in storage.all().items():
-                    print(value)
+                    if args[0] in key:
+                        print(value)
+
             else:
                 print("** class doesn't exist **")
 
@@ -127,7 +147,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = arg.split()
-            if args[0] == "BaseModel":
+            if args[0] in ("BaseModel", "User", "Place", "City", "State",
+                           "Amenity", "Review"):
                 if len(args) < 2:
                     print("** instance id missing **")
                 else:
@@ -142,21 +163,7 @@ class HBNBCommand(cmd.Cmd):
                             storage.save()
                     else:
                         print("** no instance found **")
-            elif args[0] == "User":
-                if len(args) < 2:
-                    print("** instance id missing **")
-                else:
-                    key = args[0] + "." + args[1]
-                    if key in storage.all():
-                        if len(args) < 3:
-                            print("** attribute name missing **")
-                        elif len(args) < 4:
-                            print("** value missing **")
-                        else:
-                            setattr(storage.all()[key], args[2], args[3])
-                            storage.save()
-                    else:
-                        print("** no instance found **")
+
             else:
                 print("** class doesn't exist **")
 

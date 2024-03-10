@@ -33,12 +33,29 @@ class FileStorage:
             with open(self.__file_path, "r") as file:
                 from models.base_model import BaseModel
                 from models.user import User
+                from models.state import State
+                from models.city import City
+                from models.amenity import Amenity
+                from models.place import Place
+                from models.review import Review
+
                 my_dict = json.load(file)
                 for key, value in my_dict.items():
                     if value["__class__"] == "BaseModel":
                         self.__objects[key] = BaseModel(**value)
                     elif value["__class__"] == "User":
                         self.__objects[key] = User(**value)
+                    elif value["__class__"] == "State":
+                        self.__objects[key] = State(**value)
+                    elif value["__class__"] == "City":
+                        self.__objects[key] = City(**value)
+                    elif value["__class__"] == "Amenity":
+                        self.__objects[key] = Amenity(**value)
+                    elif value["__class__"] == "Place":
+                        self.__objects[key] = Place(**value)
+                    elif value["__class__"] == "Review":
+                        self.__objects[key] = Review(**value)
+
         except FileNotFoundError:
             pass
         except json.JSONDecodeError:
