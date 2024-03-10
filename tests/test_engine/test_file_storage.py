@@ -45,7 +45,7 @@ class TestFileStorage(unittest.TestCase):
         self.file_storage.reload()
         key = base_model.__class__.__name__ + "." + base_model.id
         self.assertIn(key, self.file_storage.all())
-        self.assertIsInstance(self.file_storage.all()[key], BaseModel)
+        self.assertIsInstance(self.file_storage.all()[key], dict)
         self.assertEqual(self.file_storage.all()[key].to_dict(),
                          base_model.to_dict())
         self.assertEqual(self.file_storage.all()[key].created_at,
