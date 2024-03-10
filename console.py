@@ -4,6 +4,7 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -35,6 +36,10 @@ class HBNBCommand(cmd.Cmd):
                 new_instance = BaseModel()
                 new_instance.save()
                 print(new_instance.id)
+            elif arg == "User":
+                new_instance = User()
+                new_instance.save()
+                print(new_instance.id)
             else:
                 print("** class doesn't exist **")
 
@@ -46,6 +51,15 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = arg.split()
             if args[0] == "BaseModel":
+                if len(args) < 2:
+                    print("** instance id missing **")
+                else:
+                    key = args[0] + "." + args[1]
+                    if key in storage.all():
+                        print(storage.all()[key])
+                    else:
+                        print("** no instance found **")
+            elif args[0] == "User":
                 if len(args) < 2:
                     print("** instance id missing **")
                 else:
@@ -74,6 +88,16 @@ class HBNBCommand(cmd.Cmd):
                         storage.save()
                     else:
                         print("** no instance found **")
+            elif args[0] == "User":
+                if len(args) < 2:
+                    print("** instance id missing **")
+                else:
+                    key = args[0] + "." + args[1]
+                    if key in storage.all():
+                        del storage.all()[key]
+                        storage.save()
+                    else:
+                        print("** no instance found **")
             else:
                 print("** class doesn't exist **")
 
@@ -86,6 +110,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = arg.split()
             if args[0] == "BaseModel":
+                for key, value in storage.all().items():
+                    print(value)
+            elif args[0] == "User":
                 for key, value in storage.all().items():
                     print(value)
             else:
@@ -101,6 +128,21 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = arg.split()
             if args[0] == "BaseModel":
+                if len(args) < 2:
+                    print("** instance id missing **")
+                else:
+                    key = args[0] + "." + args[1]
+                    if key in storage.all():
+                        if len(args) < 3:
+                            print("** attribute name missing **")
+                        elif len(args) < 4:
+                            print("** value missing **")
+                        else:
+                            setattr(storage.all()[key], args[2], args[3])
+                            storage.save()
+                    else:
+                        print("** no instance found **")
+            elif args[0] == "User":
                 if len(args) < 2:
                     print("** instance id missing **")
                 else:
